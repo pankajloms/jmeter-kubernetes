@@ -31,5 +31,5 @@ kubectl cp "$jmx" -n $tenant "$master_pod:/$test_name"
 kubectl exec -ti -n $tenant $master_pod -- /bin/bash /load_test "$test_name"
 
 JVM_ARGS="-Xms512m -Xmx2048m" jmeter -Jjmeter.save.saveservice.subresults=false -n -t /$test_name -l /test1.jtl -e -o /results/output 2>&1
-java -jar /opt/apache-jmeter-${version}/lib/cmdrunner-2.2.jar --tool Reporter --plugin-type AggregateReport --input-jtl /test1.jtl --generate-csv /bin/results.csv 2>&1
+java -jar /opt/apache-jmeter-${version}/lib/cmdrunner-2.2.jar --tool Reporter --plugin-type AggregateReport --input-jtl /test1.jtl --generate-csv /results.csv 2>&1
 cat /results.csv
